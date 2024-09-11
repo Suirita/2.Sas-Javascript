@@ -1,0 +1,24 @@
+{
+  "skills": [
+    {
+      "index": 0,
+      "name": "JS",
+      "description": "front"
+    },
+    {
+      "index": 1,
+      "name": "php",
+      "description": "back"
+    },
+    {
+      "index": 2,
+      "name": "next",
+      "description": "full"
+    },
+    {
+      "index": 3,
+      "name": "react",
+      "description": "front"
+    }
+  ]
+}
