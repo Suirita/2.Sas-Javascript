@@ -15,10 +15,10 @@ const askQuestion = (query) => {
 };
 
 // Function to read skills from file
-const readSkills = async () => {
+const readMedicines = async () => {
   try {
-    const data = await fs.readFile("skills.json", "utf8");
-    return JSON.parse(data).skills || [];
+    const data = await fs.readFile("medicines.json", "utf8");
+    return JSON.parse(data).medicines || [];
   } catch (err) {
     if (err.code === "ENOENT") {
       return [];
@@ -28,27 +28,30 @@ const readSkills = async () => {
   }
 };
 
-const View_skills = async () => {
-  let skills = await readSkills();
-  console.log(`Skills List: \n`);
-  skills.forEach((skill) => {
-    console.log(` Skill ${skill.index + 1}:`);
-    console.log(`  name: ${skill.name} \n  description:${skill.description}\n`);
-  });
-};
-
-// Function to write skills back to the file
-const writeSkills = async (skills) => {
-  const updatedData = JSON.stringify({ skills }, null, 2);
+// Function to write medicines back to the file
+const writeMedicines = async (medicines) => {
+  const updatedData = JSON.stringify({ medicines }, null, 2);
   try {
-    await fs.writeFile("skills.json", updatedData, "utf8");
+    await fs.writeFile("medicines.json", updatedData, "utf8");
     console.log("Skill has been added successfully.");
   } catch (err) {
     console.error("Error writing to the file:", err);
   }
 };
 
-// Main function to add a skill
+// Main function to view medicines list
+const View_skills = async () => {
+  let medicines = await readMedicines();
+  console.log(`Medicine List: \n`);
+  medicines.forEach((medicine) => {
+    console.log(` Medicine ${medicines.indexOf(medicine) + 1}:`);
+    console.log(
+      `   trade_name: ${medicine.trade_name} \n   active_ingredient:${medicine.active_ingredient}\n   dosage:${medicine.dosage}`
+    );
+  });
+};
+
+// Main function to add a medicine
 const Add_skill = async () => {
   try {
     let skills = await readSkills();
@@ -75,4 +78,4 @@ const Add_skill = async () => {
 };
 
 View_skills();
-Add_skill();
+// Add_skill();
