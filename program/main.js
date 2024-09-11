@@ -40,7 +40,7 @@ const writeMedicines = async (medicines) => {
 };
 
 // Main function to view medicines list
-const View_skills = async () => {
+const View_Medicines = async () => {
   let medicines = await readMedicines();
   console.log(`Medicine List: \n`);
   medicines.forEach((medicine) => {
@@ -52,24 +52,30 @@ const View_skills = async () => {
 };
 
 // Main function to add a medicine
-const Add_skill = async () => {
+const Add_Medicine = async () => {
   try {
-    let skills = await readSkills();
+    let Medicines = await readMedicines();
 
-    const name = await askQuestion("The name of the skill?: ");
-    if (name === "exit") return rl.close();
+    const trade_name = await askQuestion("The trade name of the Medicine?: ");
+    if (trade_name === "exit") return rl.close();
 
-    const description = await askQuestion("The description of the skill?: ");
-    if (description === "exit") return rl.close();
+    const active_ingredient = await askQuestion(
+      "The active ingredient of the skill?: "
+    );
+    if (active_ingredient === "exit") return rl.close();
 
-    const skill = {
-      index: skills.length ? skills[skills.length - 1].index + 1 : 0,
-      name,
-      description,
+    const dosage = await askQuestion("The dosage of the skill?: ");
+    if (dosage === "exit") return rl.close();
+
+    const Medicine = {
+      id: Medicines.length + 1,
+      trade_name,
+      active_ingredient,
+      dosage,
     };
 
-    skills.push(skill);
-    await writeSkills(skills);
+    Medicines.push(Medicine);
+    await writeMedicines(Medicines);
   } catch (err) {
     console.error(err.message);
   } finally {
@@ -77,5 +83,49 @@ const Add_skill = async () => {
   }
 };
 
-// View_skills();
-Add_skill();
+const Start_Program = async () => {
+  console.log("====================================");
+  console.log("   Welcome to the Medicines List   ");
+  console.log("====================================\n");
+
+  let exitProgram = false;
+
+  while (!exitProgram) {
+    const action = await askQuestion(
+      "Please choose an action:\n" +
+        "-----------------------------------\n" +
+        " [v] - View the list of medicines\n" +
+        " [a] - Add a new medicine\n" +
+        " [exit] - Exit the program\n" +
+        "-----------------------------------\n" +
+        "Your choice: "
+    );
+
+    console.log("\n"); // Add a new line for better readability
+
+    switch (action.toLowerCase()) {
+      case "v":
+        console.log("Loading the medicines list...\n");
+        View_Medicines();
+        break;
+
+      case "a":
+        console.log("Preparing to add a new medicine...\n");
+        await Add_Medicine(); // Add awaits for async if needed
+        console.log("Medicine added successfully!\n");
+        break;
+
+      case "exit":
+        console.log("Exiting the program. Goodbye!\n");
+        exitProgram = true;
+        rl.close();
+        break;
+
+      default:
+        console.log("Invalid option. Please choose a valid action.\n");
+        break;
+    }
+  }
+};
+
+Start_Program();

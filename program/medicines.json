@@ -1,9 +1,10 @@
 {
   "medicines": [
     {
-      "trade_name": "",
-      "active_ingredient": "",
-      "dosage": ""
+      "id": 2,
+      "trade_name": "rawana",
+      "active_ingredient": "walo",
+      "dosage": "2 pills"
     }
   ]
 }
