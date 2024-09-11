@@ -1,18 +1,20 @@
-@startuml
+@startuml Medicine_List_Management
 left to right direction
 
 actor Pharmacist
 
-rectangle Categorie{
+rectangle Medicine_List_Management{
   usecase "view medicine list" as UC1
   usecase "add a medicine" as UC2
   usecase "edit a medicine" as UC3
   usecase "delete a medicine" as UC4
+  usecase "search for a medicine" as UC5
 }
 
-Pharmacist --> UC1
-Pharmacist --> UC2
-Pharmacist --> UC3
-Pharmacist --> UC4
+Pharmacist -- UC1
+Pharmacist -- UC2
+Pharmacist -- UC3
+Pharmacist -- UC4
+Pharmacist -- UC5
 
 @enduml
