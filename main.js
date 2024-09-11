@@ -77,5 +77,5 @@ const Add_skill = async () => {
   }
 };
 
-View_skills();
-// Add_skill();
+// View_skills();
+Add_skill();
