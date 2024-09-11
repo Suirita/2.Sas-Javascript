@@ -21,7 +21,6 @@ const readSkills = async () => {
     return JSON.parse(data).skills || [];
   } catch (err) {
     if (err.code === "ENOENT") {
-      // File doesn't exist, return an empty array
       return [];
     } else {
       throw new Error("Error reading the file.");
@@ -60,14 +59,12 @@ const Add_skill = async () => {
     const description = await askQuestion("The description of the skill?: ");
     if (description === "exit") return rl.close();
 
-    // Create new skill object with index
     const skill = {
       index: skills.length ? skills[skills.length - 1].index + 1 : 0,
       name,
       description,
     };
 
-    // Add the new skill to the array and write back to the file
     skills.push(skill);
     await writeSkills(skills);
   } catch (err) {
@@ -78,4 +75,4 @@ const Add_skill = async () => {
 };
 
 View_skills();
-// Add_skill();
+Add_skill();
