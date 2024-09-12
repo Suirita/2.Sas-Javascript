@@ -4,6 +4,7 @@ const MedicinesManager = require("./Managers/MedicinesManager");
 const View_Medicines = MedicinesManager.View_Medicines;
 const Add_Medicine = MedicinesManager.Add_Medicine;
 const Delete_Medicines = MedicinesManager.Delete_Medicines;
+const Edit_Medicines = MedicinesManager.Edit_Medicines;
 
 // Create readline interface
 const rl = readline.createInterface({
@@ -89,9 +90,11 @@ const Start_Program = async () => {
         const editedMedicine = await askQuestion(
           "Enter the 'trade name' or the 'id' of the medicine (or type 'back' to go back): "
         );
-        if (medicine.toLowerCase == "back") {
+        if (editedMedicine.toLowerCase == "back") {
           break;
         }
+        Edit_Medicines(editedMedicine);
+        break;
 
       case "exit":
         console.log("Exiting the program. Goodbye!\n");

@@ -60,8 +60,20 @@ const Delete_Medicines = (medicine) => {
   }
 };
 
+const Edit_Medicines = (medicine) => {
+  let Medicines = readMedicines();
+
+  Medicines = Medicines.filter((Medicine) => {
+    return (
+      Medicine.id == medicine ||
+      Medicine.trade_name.toLowerCase() == medicine.toLowerCase()
+    );
+  });
+};
+
 module.exports = {
   View_Medicines,
   Add_Medicine,
   Delete_Medicines,
+  Edit_Medicines,
 };
