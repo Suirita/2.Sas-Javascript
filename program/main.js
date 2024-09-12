@@ -77,7 +77,7 @@ const Start_Program = async () => {
         const deletedMedicine = await askQuestion(
           "Enter the 'trade name' or the 'id' of the medicine (or type 'back' to go back): "
         );
-        if (medicine.toLowerCase == "back") {
+        if (deletedMedicine.toLowerCase == "back") {
           break;
         }
         Delete_Medicines(deletedMedicine);
