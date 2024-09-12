@@ -1,4 +1,4 @@
-const DataManager = require("./Data/DataManager");
+const DataManager = require("../Data/DataManager");
 const readData = DataManager.readData;
 const writeData = DataManager.writeData;
 
