@@ -4,5 +4,17 @@
     "trade_name": "rawana",
     "active_ingredient": "walo",
     "dosage": "walo"
+  },
+  {
+    "id": 5,
+    "trade_name": "walo",
+    "active_ingredient": "walo",
+    "dosage": "walo"
+  },
+  {
+    "id": 6,
+    "trade_name": "ibola",
+    "active_ingredient": "shi7aja",
+    "dosage": "walo"
   }
 ]

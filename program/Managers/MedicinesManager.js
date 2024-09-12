@@ -18,6 +18,29 @@ const View_Medicines = () => {
   }
 };
 
+// Main function to search for a medicine
+const Search_Medicines = (medicine) => {
+  let Medicines = readMedicines();
+
+  let filteredMedicines = Medicines.filter((med) => {
+    return (
+      med.id == medicine ||
+      med.trade_name.toLowerCase() == medicine.toLowerCase()
+    );
+  });
+
+  if (filteredMedicines.length > 0) {
+    console.log(`\n ✅ Medicines found: \n`);
+    filteredMedicines.forEach((med) => {
+      console.log(
+        `Medicine: ${med.id}\n Trade Name: ${med.trade_name}\n Active Ingredient: ${med.active_ingredient}\n Dosage: ${med.dosage} \n`
+      );
+    });
+  } else {
+    console.log("❌ No medicines found matching the search criteria.");
+  }
+};
+
 // Main function to add a medicine
 const Add_Medicine = (trade_name, active_ingredient, dosage) => {
   let Medicines = readMedicines();
@@ -40,6 +63,31 @@ const Add_Medicine = (trade_name, active_ingredient, dosage) => {
   writeMedicines(Medicines);
 };
 
+// Main function to edit a medicine
+const Edit_Medicines = (
+  editedMedicine,
+  new_trade_name,
+  new_active_ingredient,
+  new_dosage
+) => {
+  let Medicines = readMedicines();
+
+  for (let i = 0; i < Medicines.length; i++) {
+    if (
+      Medicines[i].id == editedMedicine ||
+      Medicines[i].trade_name.toLowerCase() == editedMedicine.toLowerCase()
+    ) {
+      Medicines[i].trade_name = new_trade_name;
+      Medicines[i].active_ingredient = new_active_ingredient;
+      Medicines[i].dosage = new_dosage;
+
+      break;
+    }
+  }
+
+  writeMedicines(Medicines);
+};
+
 // Main function to delete a medicine
 const Delete_Medicines = (medicine) => {
   let Medicines = readMedicines();
@@ -56,24 +104,14 @@ const Delete_Medicines = (medicine) => {
     writeMedicines(Medicines);
     console.log("\n✅ Medicine deleted successfully.\n");
   } else {
-    console.log("\n❌ No medicine with this 'trade name' or 'id' exists.\n");
+    console.log("\n❌ No medicines found matching the search criteria.\n");
   }
-};
-
-const Edit_Medicines = (medicine) => {
-  let Medicines = readMedicines();
-
-  Medicines = Medicines.filter((Medicine) => {
-    return (
-      Medicine.id == medicine ||
-      Medicine.trade_name.toLowerCase() == medicine.toLowerCase()
-    );
-  });
 };
 
 module.exports = {
   View_Medicines,
+  Search_Medicines,
   Add_Medicine,
-  Delete_Medicines,
   Edit_Medicines,
+  Delete_Medicines,
 };
