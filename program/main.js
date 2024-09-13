@@ -1,4 +1,3 @@
-const fs = require("fs").promises;
 const readline = require("readline");
 const MedicinesManager = require("./Managers/MedicinesManager");
 const View_Medicines = MedicinesManager.View_Medicines;
